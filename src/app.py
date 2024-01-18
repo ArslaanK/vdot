@@ -105,9 +105,13 @@ file_names = { 'VDOT closures': 'road_closures.csv',
 
 # loading observations
 
-disc_df = pd.read_csv(f"{data_root}/usgs_discharges_2019_2024.csv")       
-stage_df = pd.read_csv(f"{data_root}/usgs_stage_2019_2024.csv")          
-met_df = pd.read_csv(f"{data_root}/usgs_precip_2019_2024.csv") 
+# disc_df = pd.read_csv(f"{data_root}/usgs_discharges_2019_2024.csv")       
+# stage_df = pd.read_csv(f"{data_root}/usgs_stage_2019_2024.csv")          
+# met_df = pd.read_csv(f"{data_root}/usgs_precip_2019_2024.csv") 
+
+disc_df = pd.read_csv(f"{data_root}/usgs_discharges_2023_2024_h.csv")       
+stage_df = pd.read_csv(f"{data_root}/usgs_stage_2023_2024_h.csv")          
+met_df = pd.read_csv(f"{data_root}/usgs_precip_2023_2024_h.csv") 
 
 # converting to datetime index
 disc_df.index = pd.to_datetime(disc_df['datetime']);del disc_df['datetime']
