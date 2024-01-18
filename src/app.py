@@ -122,7 +122,7 @@ met_df.index = pd.to_datetime(met_df['datetime']);del met_df['datetime']
 # loading vdot regions
 
 
-vdot_region1 = pd.read_csv(f"{data_root}//{file_names['VDOT Region']}")
+vdot_region1 = pd.read_csv(f"{data_root}/{file_names['VDOT Region']}")
 del vdot_region1['Unnamed: 0']
 
 vdot_region1 = gpd.GeoDataFrame(vdot_region1, geometry=gpd.GeoSeries.from_wkt(vdot_region1['geometry']), crs='EPSG:26918')
@@ -131,7 +131,7 @@ vdot_region = vdot_region1.to_crs(4326)
 
 
 # loading USGS Stream data
-VA = pd.read_csv(f"{data_root}//{file_names['Gages']}", dtype ='str')
+VA = pd.read_csv(f"{data_root}/{file_names['Gages']}", dtype ='str')
 usgs_gages_all = gpd.GeoDataFrame(VA, geometry=gpd.points_from_xy(VA['dec_long_va'], VA['dec_lat_va']), crs='EPSG:4326')
 
 usgs_gages_all['lat'] = usgs_gages_all['geometry'].y
@@ -152,7 +152,7 @@ usgs_gages_wind = usgs_gages_all[usgs_gages_all.parm_cd=='00035']
 met_gages = usgs_gages_all[usgs_gages_all.parm_cd=='00045']
 
 # Read the VDOT data
-rd_file = pd.read_csv(f"{data_root}//{file_names['VDOT closures']}")
+rd_file = pd.read_csv(f"{data_root}/{file_names['VDOT closures']}")
 
 # rd_file = rd_file[:1000]
 # convert to dataframe
@@ -160,7 +160,7 @@ gdf = gpd.GeoDataFrame(rd_file, geometry=gpd.points_from_xy(rd_file['x'], rd_fil
 
 
 # loading Roads network
-roads_in_2 = pd.read_csv(f"{data_root}//{file_names['Roads']}")
+roads_in_2 = pd.read_csv(f"{data_root}/{file_names['Roads']}")
 del roads_in_2['Unnamed: 0']
 # roads_in_2 = roads_in_2[:1000]
 
