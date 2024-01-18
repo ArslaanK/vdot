@@ -9,6 +9,5 @@ dataretrieval
 shapely
 tqdm
 numpy
-os
 datetime
 dash-tools
