@@ -78,18 +78,19 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-current_working_directory = os.getcwd()
+# current_working_directory = os.getcwd()
 
-data_root = f'{current_working_directory}//Data_Clean'
-output_dir = f'{current_working_directory}//Outputs'
+# data_root = f'{current_working_directory}//Data_Clean'
+# output_dir = f'{current_working_directory}//Outputs'
 
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+# if not os.path.exists(output_dir):
+#     os.makedirs(output_dir)
 
 
 # data_root = r'C:/Users/Arslaan Khalid/Desktop/Papers_by_Arslaan/VDOT_Dashboard/Data'
 # data_root = current_working_directory
 
+data_root = 'https://data.iflood.vse.gmu.edu/VDOT_dataset'
 
 file_names = { 'VDOT closures': 'road_closures.csv',
                'VDOT Region': 'VDOT_regions.csv',
@@ -100,11 +101,13 @@ file_names = { 'VDOT closures': 'road_closures.csv',
                'Obs Precipitation': 'usgs_precip_2019_2024.csv'  
     }
 
+# https://data.iflood.vse.gmu.edu/VDOT_dataset/USGS_gagesVA.csv
+
 # loading observations
 
-disc_df = pd.read_csv(r'C:\Users\Arslaan Khalid\Desktop\Papers_by_Arslaan\VDOT_Dashboard\Data_Clean\usgs_discharges_2019_2024.csv')       
-stage_df = pd.read_csv(r'C:\Users\Arslaan Khalid\Desktop\Papers_by_Arslaan\VDOT_Dashboard\Data_Clean\usgs_stage_2019_2024.csv')          
-met_df = pd.read_csv(r'C:\Users\Arslaan Khalid\Desktop\Papers_by_Arslaan\VDOT_Dashboard\Data_Clean\usgs_precip_2019_2024.csv') 
+disc_df = pd.read_csv(f"{data_root}/usgs_discharges_2019_2024.csv")       
+stage_df = pd.read_csv(f"{data_root}/usgs_stage_2019_2024.csv")          
+met_df = pd.read_csv(f"{data_root}/usgs_precip_2019_2024.csv") 
 
 # converting to datetime index
 disc_df.index = pd.to_datetime(disc_df['datetime']);del disc_df['datetime']
@@ -238,6 +241,8 @@ initial_column = 'Category'
 initial_region = 'Northern'
 # create DASH app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server=app.server
+
 
 app.layout = dbc.Container([
     html.H1("Interactive VDOT Dashboard", className='mb-2', style={'textAlign': 'center'}),
@@ -475,7 +480,7 @@ app.layout = dbc.Container([
 def export_data_as_csv(n_clicks,rodata1):
     if n_clicks:
         # Define the file path for the CSV file
-        csv_file_path = f"{output_dir}//filtered_data.csv"
+        csv_file_path = f"filtered_data.csv" #{output_dir}//
         
         dd = pd.DataFrame.from_records(rodata1)
         #print(rodata1)
@@ -970,7 +975,7 @@ def update_map(selected_yaxis, selected_time_range,click_data,shape_checked,sele
             del filtered_shp['Reported Time2']
             tmz = str(datetime.datetime.now())[:16]
             tmz =''
-            filtered_shp.to_file(f'{output_dir}//filtered_shapefile_{tmz}.shp')
+            filtered_shp.to_file(f'filtered_shapefile_{tmz}.shp')#{output_dir}//
  
     # if sync_usgs_data:
 
