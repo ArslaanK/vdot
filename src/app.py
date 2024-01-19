@@ -202,6 +202,9 @@ gdf['Reported Time2'] = pd.to_datetime(gdf['Reported Time'], errors='coerce')
 gdf = gdf.dropna(subset=['Reported Time2'])
 gdf = gdf.sort_values(['Reported Time2'])
 
+gdf = gdf[::5] # cropping some data
+
+
 # define a global variable for usage later
 gdf_global = gdf.copy()
 
