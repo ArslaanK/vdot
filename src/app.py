@@ -96,7 +96,7 @@ file_names = { 'VDOT closures': 'road_closures.csv',
                'VDOT Region': 'VDOT_regions.csv',
                'Gages': 'USGS_gagesVA.csv',
                'Roads': 'road_lines_simplified.csv', 
-               'Obs Stage': 'usgs_stage_2019_2024_d.csv',
+               'Obs Stage': 'usgs_stage_2019_2024_d.csv', # _d means daily, h_is hourly
                'Obs Discharge': 'usgs_discharges_2019_2024_d.csv',
                'Obs Precipitation': 'usgs_precip_2019_2024_d.csv'  
     }
