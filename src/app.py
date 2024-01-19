@@ -165,7 +165,7 @@ gdf = gpd.GeoDataFrame(rd_file, geometry=gpd.points_from_xy(rd_file['x'], rd_fil
 roads_in_2 = pd.read_csv(f"{data_root}/{file_names['Roads']}")
 del roads_in_2['Unnamed: 0']
 
-roads_in_2 = roads_in_2[::5] # cropping some data
+roads_in_2 = roads_in_2[::10] # cropping some data
 
 # convert to dataframe
 roads_in_2['geometry'] = roads_in_2['geometry'].apply(lambda x: x if pd.notnull(x) else None) 
