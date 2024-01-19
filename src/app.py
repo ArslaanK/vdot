@@ -159,13 +159,13 @@ rd_file = pd.read_csv(f"{data_root}/{file_names['VDOT closures']}")
 # convert to dataframe
 gdf = gpd.GeoDataFrame(rd_file, geometry=gpd.points_from_xy(rd_file['x'], rd_file['y']), crs='EPSG:4326')
 
-gdf = gdf[:20000]
+# gdf = gdf[:20000]
 
 # loading Roads network
 roads_in_2 = pd.read_csv(f"{data_root}/{file_names['Roads']}")
 del roads_in_2['Unnamed: 0']
 
-roads_in_2 = roads_in_2[:20000]
+# roads_in_2 = roads_in_2[:20000]
 
 # convert to dataframe
 roads_in_2['geometry'] = roads_in_2['geometry'].apply(lambda x: x if pd.notnull(x) else None) 
