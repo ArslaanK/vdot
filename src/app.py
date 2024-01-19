@@ -96,9 +96,9 @@ file_names = { 'VDOT closures': 'road_closures.csv',
                'VDOT Region': 'VDOT_regions.csv',
                'Gages': 'USGS_gagesVA.csv',
                'Roads': 'road_lines_simplified.csv', 
-               'Obs Stage': 'usgs_discharges_2019_2024.csv',
-               'Obs Discharge': 'usgs_discharges_2019_2024.csv' ,
-               'Obs Precipitation': 'usgs_precip_2019_2024.csv'  
+               'Obs Stage': 'usgs_stage_2021_2024_h.csv',
+               'Obs Discharge': 'usgs_discharges_201_2024_h.csv' ,
+               'Obs Precipitation': 'usgs_precip_2021_2024_h.csv'  
     }
 
 # https://data.iflood.vse.gmu.edu/VDOT_dataset/USGS_gagesVA.csv
@@ -109,9 +109,9 @@ file_names = { 'VDOT closures': 'road_closures.csv',
 # stage_df = pd.read_csv(f"{data_root}/usgs_stage_2019_2024.csv")          
 # met_df = pd.read_csv(f"{data_root}/usgs_precip_2019_2024.csv") 
 
-disc_df = pd.read_csv(f"{data_root}/usgs_discharges_2023_2024_h.csv")       
-stage_df = pd.read_csv(f"{data_root}/usgs_stage_2023_2024_h.csv")          
-met_df = pd.read_csv(f"{data_root}/usgs_precip_2023_2024_h.csv") 
+disc_df = pd.read_csv(f"{data_root}/{file_names['Obs Discharge']}")       
+stage_df = pd.read_csv(f"{data_root}/{file_names['Obs Stage']}")          
+met_df = pd.read_csv(f"{data_root}/{file_names['Obs Precipitation']}") 
 
 # converting to datetime index
 disc_df.index = pd.to_datetime(disc_df['datetime']);del disc_df['datetime']
