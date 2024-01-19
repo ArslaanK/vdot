@@ -96,18 +96,14 @@ file_names = { 'VDOT closures': 'road_closures.csv',
                'VDOT Region': 'VDOT_regions.csv',
                'Gages': 'USGS_gagesVA.csv',
                'Roads': 'road_lines_simplified.csv', 
-               'Obs Stage': 'usgs_stage_2019_2024_h.csv',
-               'Obs Discharge': 'usgs_discharges_2019_2024_h.csv',
-               'Obs Precipitation': 'usgs_precip_2019_2024_h.csv'  
+               'Obs Stage': 'usgs_stage_2019_2024_d.csv',
+               'Obs Discharge': 'usgs_discharges_2019_2024_d.csv',
+               'Obs Precipitation': 'usgs_precip_2019_2024_d.csv'  
     }
 
 # https://data.iflood.vse.gmu.edu/VDOT_dataset/USGS_gagesVA.csv
 
 # loading observations
-
-# disc_df = pd.read_csv(f"{data_root}/usgs_discharges_2019_2024.csv")       
-# stage_df = pd.read_csv(f"{data_root}/usgs_stage_2019_2024.csv")          
-# met_df = pd.read_csv(f"{data_root}/usgs_precip_2019_2024.csv") 
 
 disc_df = pd.read_csv(f"{data_root}/{file_names['Obs Discharge']}")       
 stage_df = pd.read_csv(f"{data_root}/{file_names['Obs Stage']}")          
@@ -118,7 +114,12 @@ disc_df.index = pd.to_datetime(disc_df['datetime']);del disc_df['datetime']
 stage_df.index = pd.to_datetime(stage_df['datetime']);del stage_df['datetime']
 met_df.index = pd.to_datetime(met_df['datetime']);del met_df['datetime']
 
-print(disc_df.head(10))
+# reselect to daily frequency
+# disc_df = disc_df.asfreq('D')
+# stage_df = stage_df.asfreq('D')
+# met_df = met_df.asfreq('D')
+
+#print(disc_df.head(10))
 # loading vdot regions
 
 
