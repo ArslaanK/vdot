@@ -95,7 +95,7 @@ data_root = 'https://data.iflood.vse.gmu.edu/VDOT_dataset'
 file_names = { 'VDOT closures': 'road_closures.csv',
                'VDOT Region': 'VDOT_regions.csv',
                'Gages': 'USGS_gagesVA.csv',
-               'Roads': 'road_lines_simplified.csv', 
+               'Roads': 'simply_roads_near_vdot.csv', # all roads'road_lines_simplified.csv', #
                'Obs Stage': 'usgs_stage_2019_2024_d.csv', # _d means daily, h_is hourly
                'Obs Discharge': 'usgs_discharges_2019_2024_d.csv',
                'Obs Precipitation': 'usgs_precip_2019_2024_d.csv'  
@@ -165,7 +165,7 @@ gdf = gpd.GeoDataFrame(rd_file, geometry=gpd.points_from_xy(rd_file['x'], rd_fil
 roads_in_2 = pd.read_csv(f"{data_root}/{file_names['Roads']}")
 del roads_in_2['Unnamed: 0']
 
-roads_in_2 = roads_in_2[::10] # cropping some data
+# roads_in_2 = roads_in_2[::20] # cropping some data
 
 # convert to dataframe
 roads_in_2['geometry'] = roads_in_2['geometry'].apply(lambda x: x if pd.notnull(x) else None) 
@@ -174,7 +174,9 @@ roads = gpd.GeoDataFrame(roads_in_2, geometry=gpd.GeoSeries.from_wkt(roads_in_2[
 roads = roads[roads.geometry.notnull()]
 
 # join all roads with the vdot data, to clean some road loading
-roads_near_vdot = gpd.sjoin_nearest(roads, gdf,max_distance=0.0001)
+#roads_near_vdot = gpd.sjoin_nearest(roads, gdf,max_distance=0.0001) # this is used when all roads are used
+
+roads_near_vdot = roads
 
 
 # keep, lat lon columns
