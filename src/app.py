@@ -158,13 +158,13 @@ rd_file = pd.read_csv(f"{data_root}/{file_names['VDOT closures']}")
 # convert to dataframe
 gdf = gpd.GeoDataFrame(rd_file, geometry=gpd.points_from_xy(rd_file['x'], rd_file['y']), crs='EPSG:4326')
 
-gdf = gdf[:5000]
+gdf = gdf[:50000]
 
 # loading Roads network
 roads_in_2 = pd.read_csv(f"{data_root}/{file_names['Roads']}")
 del roads_in_2['Unnamed: 0']
 
-roads_in_2 = roads_in_2[:5000]
+roads_in_2 = roads_in_2[:50000]
 
 # convert to dataframe
 roads_in_2['geometry'] = roads_in_2['geometry'].apply(lambda x: x if pd.notnull(x) else None) 
@@ -492,7 +492,7 @@ def export_data_as_csv(n_clicks,rodata1):
         #print(rodata1)
         dd.to_csv(csv_file_path)
         # Return the file path to trigger the export
-        return False
+        return True # False for local downloads
     return False
 
 
